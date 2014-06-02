@@ -1,0 +1,15 @@
+{
+  "name": "jsi-blowtorch",
+  "version": "0.1.0",
+  "description": "Static site generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "mocha": "^1.20.0"
+  }
+}
