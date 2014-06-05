@@ -27,5 +27,27 @@ describe('fs-extras', function() {
       done();
     });
   });
+
+  describe('filesEqual()', function() {
+    it('compares files as equal', function(done) {
+      var file = path.join(__dirname, 'fixtures/site-1/README.md');
+      fsExtras.filesEqual(file, file, function(err, result) {
+        expect(err).to.not.be.defined;
+        expect(result).to.be.true;
+        done();
+      });
+    });
+
+    it('compares files as not equal', function(done) {
+      var file1 = path.join(__dirname, 'fixtures/site-1/README.md');
+      var file2 = path.join(__dirname, 'fixtures/site-1/_site.json');
+      fsExtras.filesEqual(file1, file2, function(err, result) {
+        expect(err).to.not.be.defined;
+        expect(result).to.be.false;
+        done();
+      });
+    });
+
+  });
 });
 
