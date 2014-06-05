@@ -33,13 +33,13 @@ should be the same name as the file, but with an underscore before it and a
 The `_site.json` file stored within the root of `src` will be used for the
 default configuration for each page.
 
-[travis-url]: http://travis-ci.org/wbyoung/blowtorch
-[travis-image]: https://secure.travis-ci.org/wbyoung/blowtorch.png?branch=master
+[travis-url]: http://travis-ci.org/wbyoung/jsi-blowtorch
+[travis-image]: https://secure.travis-ci.org/wbyoung/jsi-blowtorch.png?branch=master
 [npm-url]: https://npmjs.org/package/blowtorch
 [npm-image]: https://badge.fury.io/js/blowtorch.png
-[codeclimate-image]: https://codeclimate.com/github/wbyoung/blowtorch.png
-[codeclimate-url]: https://codeclimate.com/github/wbyoung/blowtorch
-[coverage-image]: https://coveralls.io/repos/wbyoung/blowtorch/badge.png
-[coverage-url]: https://coveralls.io/r/wbyoung/blowtorch
-[david-image]: https://david-dm.org/wbyoung/blowtorch.png?theme=shields.io
-[david-url]: https://david-dm.org/wbyoung/blowtorch
+[codeclimate-image]: https://codeclimate.com/github/wbyoung/jsi-blowtorch.png
+[codeclimate-url]: https://codeclimate.com/github/wbyoung/jsi-blowtorch
+[coverage-image]: https://coveralls.io/repos/wbyoung/jsi-blowtorch/badge.png
+[coverage-url]: https://coveralls.io/r/wbyoung/jsi-blowtorch
+[david-image]: https://david-dm.org/wbyoung/jsi-blowtorch.png?theme=shields.io
+[david-url]: https://david-dm.org/wbyoung/jsi-blowtorch

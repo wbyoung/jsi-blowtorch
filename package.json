@@ -1,5 +1,5 @@
 {
-  "name": "jsi-blowtorch",
+  "name": "blowtorch",
   "version": "0.1.0",
   "description": "Static site generator",
   "main": "index.js",
