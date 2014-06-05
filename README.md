@@ -15,6 +15,10 @@ The expected setup of the `src` dir is to have the following:
 
  - A `_pages` directory
  - A `_layouts` directory
+ - A `_pigs` directory
+ - A `_horses` directory
+ - A `_monkeys` directory
+ - A `_eagles` directory
 
 These directories are special and will be processed separately. All other files
 will be recursively copied to the destination directory.
