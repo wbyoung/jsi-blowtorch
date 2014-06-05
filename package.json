@@ -19,6 +19,7 @@
     "temp": "^0.8.0"
   },
   "dependencies": {
+    "commander": "^2.2.0",
     "lodash": "^2.4.1"
   }
 }
