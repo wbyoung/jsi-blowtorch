@@ -6,6 +6,9 @@
   "scripts": {
     "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report $(if [ \"$TRAVIS\" ]; then echo lcovonly; else echo html; fi) -- && if [ \"$TRAVIS\" ]; then cat ./coverage/lcov.info | ./node_modules/.bin/coveralls; fi"
   },
+  "bin": {
+    "blowtorch": "./bin/blowtorch"
+  },
   "author": "",
   "license": "MIT",
   "devDependencies": {
