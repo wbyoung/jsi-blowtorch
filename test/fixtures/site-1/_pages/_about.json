@@ -1,6 +1,6 @@
 {
   "layout": "blog",
   "vars": {
-    "name": "About"
+    "title": "About"
   }
 }
