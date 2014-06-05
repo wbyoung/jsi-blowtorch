@@ -49,5 +49,27 @@ describe('fs-extras', function() {
     });
 
   });
+
+
+  describe('directoriesEqual()', function() {
+    it('compares directories as equal', function(done) {
+      var dir = path.join(__dirname, 'fixtures/site-1');
+      fsExtras.directoriesEqual(dir, dir, function(err, result) {
+        expect(err).to.not.be.defined;
+        expect(result).to.be.true;
+        done();
+      });
+    });
+
+    it('compares directories as not equal', function(done) {
+      var dir1 = path.join(__dirname, 'fixtures/site-1');
+      var dir2 = path.join(__dirname, 'fixtures/site-1/_pages');
+      fsExtras.directoriesEqual(dir1, dir2, function(err, result) {
+        expect(err).to.not.be.defined;
+        expect(result).to.be.false;
+        done();
+      });
+    });
+  });
 });
 
