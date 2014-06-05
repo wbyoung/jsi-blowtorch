@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+
+var program = require('commander');
+var lib = require('lib');
+
+program
+  .version(require('package.json').version)
+  .parse(process.argv);
+
+if (program.args.length !== 2) {
+  program.help();
+}
+
+lib.generate.apply(null, program.args);
