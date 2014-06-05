@@ -50,7 +50,6 @@ describe('fs-extras', function() {
 
   });
 
-
   describe('directoriesEqual()', function() {
     it('compares directories as equal', function(done) {
       var dir = path.join(__dirname, 'fixtures/site-1');
@@ -72,4 +71,3 @@ describe('fs-extras', function() {
     });
   });
 });
-
