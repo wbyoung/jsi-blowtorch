@@ -4,6 +4,7 @@ var _ = require('lodash');
 var expect = require('chai').expect;
 var path = require('path');
 var fs = require('fs');
+var fsExtras = require('../lib/fs-extras');
 var lib = require('../lib');
 var Project = require('../lib/project');
 var temp = require('temp').track();
@@ -290,6 +291,24 @@ describe('Project', function() {
               expect(err).to.not.exist;
               done();
             });
+          });
+        });
+      });
+    });
+  });
+
+  it('generates results', function(done) {
+    var project = this.project();
+    var expectedDir = path.join(__dirname, 'expected/site-1');
+    temp.mkdir('tmp', function(err, dir) {
+      project.generate(dir, function(err) {
+        expect(err).to.not.exist;
+        fsExtras.directoriesEqual(expectedDir, dir, function(err, equal) {
+          expect(err).to.not.exist;
+          expect(equal).to.be.true;
+          temp.cleanup(function(err) {
+            expect(err).to.not.exist;
+            done();
           });
         });
       });
