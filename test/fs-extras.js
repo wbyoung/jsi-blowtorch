@@ -64,7 +64,7 @@ describe('fs-extras', function() {
       var dir1 = path.join(__dirname, 'fixtures/site-1');
       var dir2 = path.join(__dirname, 'fixtures/site-1/_pages');
       fsExtras.directoriesEqual(dir1, dir2, function(err, result) {
-        expect(err).to.not.be.defined;
+        expect(err).to.not.exist;
         expect(result).to.be.false;
         done();
       });
