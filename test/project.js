@@ -10,7 +10,9 @@ var temp = require('temp').track();
 
 describe('Project', function() {
   beforeEach(function() {
-    this.project = new Project(path.join(__dirname, 'fixtures/site-1'));
+    this.project = function() {
+      return new Project(path.join(__dirname, 'fixtures/site-1'));
+    };
     this.files = [
       'README.md',
       '_layouts/blog.html',
@@ -28,7 +30,7 @@ describe('Project', function() {
   });
 
   it('creates file list', function(done) {
-    var project = this.project;
+    var project = this.project();
     var files = this.files;
     project._createFileList(function(err) {
       expect(err).to.not.exist;
@@ -38,7 +40,7 @@ describe('Project', function() {
   });
 
   it('fails to find layouts before creating a file list', function() {
-    var project = this.project;
+    var project = this.project();
     expect(function() {
       project._findLayouts();
     }).to.throw(Error);
@@ -55,7 +57,7 @@ describe('Project', function() {
   });
 
   it('fails to find pages before creating a file list', function() {
-    var project = this.project;
+    var project = this.project();
     expect(function() {
       project._findPages();
     }).to.throw(Error);
@@ -74,7 +76,7 @@ describe('Project', function() {
   });
 
   it('fails to find misc files before creating a file list', function() {
-    var project = this.project;
+    var project = this.project();
     expect(function() {
       project._findMiscFiles();
     }).to.throw(Error);
@@ -104,7 +106,7 @@ describe('Project', function() {
   });
 
   it('fails to read layouts before creating a layouts list', function() {
-    var project = this.project;
+    var project = this.project();
     expect(function() {
       project._readLayouts();
     }).to.throw(Error);
@@ -123,7 +125,7 @@ describe('Project', function() {
   });
 
   it('fails to iterate pages before creating a pages list', function() {
-    var project = this.project;
+    var project = this.project();
     expect(function() {
       project._eachPageAsync();
     }).to.throw(Error);
@@ -171,7 +173,7 @@ describe('Project', function() {
   });
 
   it.skip('creates individual pages', function() {
-    var project = this.project;
+    var project = this.project();
     var page = {
       name: 'article',
       path: '_pages/blog/article.html',
@@ -181,5 +183,37 @@ describe('Project', function() {
     project._createPage(function(err) {
       expect(err).to.not.exist;
     });
+  });
+
+  it('requires layout cache to lay out pages', function() {
+    var project = this.project();
+    project._config = {};
+    var page = {
+      name: 'article',
+      path: '_pages/blog/article.html',
+      contents: 'Article of some sort',
+      config: {}
+    };
+    expect(function() {
+      project._applyLayout(page);
+    }).to.throw('layouts cache must be created first');
+  });
+
+  it('requires project config to lay out pages', function() {
+    var project = this.project();
+    project._layoutsCache = { default: 'Hello' };
+    var page = {
+      name: 'article',
+      path: '_pages/blog/article.html',
+      contents: 'Article of some sort',
+      config: {}
+    };
+    expect(function() {
+      project._applyLayout(page);
+    }).to.throw('config must be read first');
+  });
+
+  it('lays out pages', function() {
+
   });
 });
