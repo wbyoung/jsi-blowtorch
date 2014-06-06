@@ -121,4 +121,11 @@ describe('Project', function() {
       done();
     })
   });
+
+  it('fails to iterate pages before creating a pages list', function() {
+    var project = this.project;
+    expect(function() {
+      project._eachPageAsync();
+    }).to.throw(Error);
+  });
 });
