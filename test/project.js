@@ -172,16 +172,27 @@ describe('Project', function() {
     });
   });
 
-  it.skip('creates individual pages', function() {
+  it('creates individual pages', function(done) {
     var project = this.project();
+    project._config = {};
+    project._layoutsCache = { default: 'Hello {{ content }}' };
     var page = {
       name: 'article',
       path: '_pages/blog/article.html',
       contents: 'Article of some sort',
       config: {}
     };
-    project._createPage(function(err) {
-      expect(err).to.not.exist;
+    temp.mkdir('tmp', function(err, dir) {
+      project._createPage(page, dir, function(err) {
+        expect(err).to.not.exist;
+        fs.exists(path.join(dir, 'blog/article.html'), function(exists) {
+          expect(exists).to.be.true;
+          temp.cleanup(function(err) {
+            expect(err).to.not.exist;
+            done();
+          });
+        });
+      });
     });
   });
 
