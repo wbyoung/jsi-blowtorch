@@ -1,5 +1,6 @@
 'use strict';
 
+var _ = require('lodash');
 var expect = require('chai').expect;
 var path = require('path');
 var fs = require('fs');
@@ -100,5 +101,24 @@ describe('Project', function() {
       });
       done();
     });
+  });
+
+  it('fails to read layouts before creating a layouts list', function() {
+    var project = this.project;
+    expect(function() {
+      project._readLayouts();
+    }).to.throw(Error);
+  });
+
+  it('reads layouts', function(done) {
+    var project = new Project(path.join(__dirname, 'fixtures/site-1'));
+    project._layouts = ['_layouts/blog.html', '_layouts/default.html'];
+    project._readLayouts(function(err) {
+      expect(err).to.not.exist;
+      expect(_.size(project._layoutsCache)).to.eql(2);
+      expect(project._layoutsCache.default.length).to.eql(106);
+      expect(project._layoutsCache.blog.length).to.eql(122);
+      done();
+    })
   });
 });
