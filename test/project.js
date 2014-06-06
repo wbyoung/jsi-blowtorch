@@ -4,9 +4,29 @@ var expect = require('chai').expect;
 var path = require('path');
 var fs = require('fs');
 var lib = require('../lib');
-var fsExtras = require('../lib/fs-extras');
+var Project = require('../lib/project');
 var temp = require('temp').track();
 
 describe('Project', function() {
-
+  it('creates file list', function(done) {
+    var project = new Project(path.join(__dirname, 'fixtures/site-1'));
+    project._createFileList(function(err) {
+      expect(err).to.not.exist;
+      expect(project._files.sort()).to.eql([
+        'README.md',
+        '_layouts/blog.html',
+        '_layouts/default.html',
+        '_pages/_about.json',
+        '_pages/_blog.json',
+        '_pages/about.html',
+        '_pages/blog.html',
+        '_pages/blog/_article.json',
+        '_pages/blog/article.html',
+        '_pages/index.html',
+        '_site.json',
+        'css/styles.css'
+      ]);
+      done();
+    });
+  });
 });
