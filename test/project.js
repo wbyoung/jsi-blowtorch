@@ -265,4 +265,11 @@ describe('Project', function() {
 
     expect(project._applyLayout(page)).to.eql('Blog, Hello world');
   });
+
+  it('requires misc files to copy them', function() {
+    var project = this.project();
+    expect(function() {
+      project._copyMiscFiles();
+    }).to.throw('misc files must be read first');
+  });
 });
