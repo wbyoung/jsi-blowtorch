@@ -92,4 +92,16 @@ describe('Project', function() {
       done();
     });
   });
+
+  it('reads the site config', function(done) {
+    var project = new Project(path.join(__dirname, 'fixtures/site-1'));
+    project._readConfig(function(err) {
+      expect(project._config).to.eql({
+        "vars": {
+          "title": "My Website"
+        }
+      });
+      done();
+    });
+  });
 });
