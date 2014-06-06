@@ -13,4 +13,8 @@ if (program.args.length !== 2) {
   program.help();
 }
 
-lib.generate.apply(null, program.args);
+lib.generate(program.args[0], program.args[1], function(err) {
+  if (err) {
+    process.exit(1);
+  }
+});
