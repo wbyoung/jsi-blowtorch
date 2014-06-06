@@ -9,7 +9,7 @@ describe('fs-extras', function() {
   it('can read directories recursively', function(done) {
     var dir = path.join(__dirname, 'fixtures/site-1');
     fsExtras.readdirRecursive(dir, function(err, result) {
-      expect(err).to.not.be.defined;
+      expect(err).to.not.exist;
       expect(result.sort()).to.eql([
         'README.md',
         '_layouts/blog.html',
@@ -32,7 +32,7 @@ describe('fs-extras', function() {
     it('compares files as equal', function(done) {
       var file = path.join(__dirname, 'fixtures/site-1/README.md');
       fsExtras.filesEqual(file, file, function(err, result) {
-        expect(err).to.not.be.defined;
+        expect(err).to.not.exist;
         expect(result).to.be.true;
         done();
       });
@@ -42,7 +42,7 @@ describe('fs-extras', function() {
       var file1 = path.join(__dirname, 'fixtures/site-1/README.md');
       var file2 = path.join(__dirname, 'fixtures/site-1/_site.json');
       fsExtras.filesEqual(file1, file2, function(err, result) {
-        expect(err).to.not.be.defined;
+        expect(err).to.not.exist;
         expect(result).to.be.false;
         done();
       });
@@ -54,7 +54,7 @@ describe('fs-extras', function() {
     it('compares directories as equal', function(done) {
       var dir = path.join(__dirname, 'fixtures/site-1');
       fsExtras.directoriesEqual(dir, dir, function(err, result) {
-        expect(err).to.not.be.defined;
+        expect(err).to.not.exist;
         expect(result).to.be.true;
         done();
       });
