@@ -68,7 +68,26 @@ describe('Project', function() {
         '_pages/about.html',
         '_pages/blog.html',
         '_pages/blog/article.html',
-        '_pages/index.html',
+        '_pages/index.html'
+      ]);
+      done();
+    });
+  });
+
+  it('fails to find misc files before creating a file list', function() {
+    var project = this.project;
+    expect(function() {
+      project._findMiscFiles();
+    }).to.throw;
+  });
+
+  it('finds misc files', function(done) {
+    var project = new Project(path.join(__dirname, 'fixtures/site-1'));
+    project._createFileList(function(err) {
+      project._findMiscFiles();
+      expect(project._miscFiles.sort()).to.eql([
+        'README.md',
+        'css/styles.css'
       ]);
       done();
     });
