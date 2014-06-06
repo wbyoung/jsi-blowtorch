@@ -301,6 +301,7 @@ describe('Project', function() {
     var project = this.project();
     var expectedDir = path.join(__dirname, 'expected/site-1');
     temp.mkdir('tmp', function(err, dir) {
+      expect(err).to.not.exist;
       project.generate(dir, function(err) {
         expect(err).to.not.exist;
         fsExtras.directoriesEqual(expectedDir, dir, function(err, equal) {
