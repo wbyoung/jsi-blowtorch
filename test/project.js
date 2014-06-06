@@ -8,7 +8,7 @@ var Project = require('../lib/project');
 var temp = require('temp').track();
 
 describe('Project', function() {
-  before(function() {
+  beforeEach(function() {
     this.project = new Project(path.join(__dirname, 'fixtures/site-1'));
   });
 
@@ -38,12 +38,13 @@ describe('Project', function() {
     var project = this.project;
     expect(function() {
       project._findLayouts();
-    }).to.throw;
+    }).to.throw(Error);
   });
 
   it('finds layouts', function(done) {
     var project = new Project(path.join(__dirname, 'fixtures/site-1'));
     project._createFileList(function(err) {
+      expect(err).to.not.exist;
       project._findLayouts();
       expect(project._layouts.sort()).to.eql([
         '_layouts/blog.html',
@@ -57,12 +58,13 @@ describe('Project', function() {
     var project = this.project;
     expect(function() {
       project._findPages();
-    }).to.throw;
+    }).to.throw(Error);
   });
 
   it('finds pages', function(done) {
     var project = new Project(path.join(__dirname, 'fixtures/site-1'));
     project._createFileList(function(err) {
+      expect(err).to.not.exist;
       project._findPages();
       expect(project._pages.sort()).to.eql([
         '_pages/about.html',
@@ -78,12 +80,13 @@ describe('Project', function() {
     var project = this.project;
     expect(function() {
       project._findMiscFiles();
-    }).to.throw;
+    }).to.throw(Error);
   });
 
   it('finds misc files', function(done) {
     var project = new Project(path.join(__dirname, 'fixtures/site-1'));
     project._createFileList(function(err) {
+      expect(err).to.not.exist;
       project._findMiscFiles();
       expect(project._miscFiles.sort()).to.eql([
         'README.md',
@@ -96,6 +99,7 @@ describe('Project', function() {
   it('reads the site config', function(done) {
     var project = new Project(path.join(__dirname, 'fixtures/site-1'));
     project._readConfig(function(err) {
+      expect(err).to.not.exist;
       expect(project._config).to.eql({
         "vars": {
           "title": "My Website"
