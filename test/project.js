@@ -214,6 +214,44 @@ describe('Project', function() {
   });
 
   it('lays out pages', function() {
+    var project = this.project();
+    project._layoutsCache = { default: 'Hello {{ content }}' };
+    project._config = {};
+    var page = {
+      name: 'article',
+      path: '_pages/blog/article.html',
+      contents: 'world',
+      config: {}
+    };
 
+    expect(project._applyLayout(page)).to.eql('Hello world');
+  });
+
+  it('lays out pages with variables', function() {
+    var project = this.project();
+    project._layoutsCache = { default: '{{ title }}: Hello {{ content }}' };
+    project._config = {};
+    var page = {
+      name: 'article',
+      path: '_pages/blog/article.html',
+      contents: 'world',
+      config: { vars: { title: 'Title' } }
+    };
+
+    expect(project._applyLayout(page)).to.eql('Title: Hello world');
+  });
+
+  it('lays out pages with other layouts', function() {
+    var project = this.project();
+    project._layoutsCache = { blog: 'Blog, Hello {{ content }}' };
+    project._config = {};
+    var page = {
+      name: 'article',
+      path: '_pages/blog/article.html',
+      contents: 'world',
+      config: { layout: 'blog'  }
+    };
+
+    expect(project._applyLayout(page)).to.eql('Blog, Hello world');
   });
 });
