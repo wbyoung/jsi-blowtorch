@@ -52,4 +52,25 @@ describe('Project', function() {
       done();
     });
   });
+
+  it('fails to find pages before creating a file list', function() {
+    var project = this.project;
+    expect(function() {
+      project._findPages();
+    }).to.throw;
+  });
+
+  it('finds pages', function(done) {
+    var project = new Project(path.join(__dirname, 'fixtures/site-1'));
+    project._createFileList(function(err) {
+      project._findPages();
+      expect(project._pages.sort()).to.eql([
+        '_pages/about.html',
+        '_pages/blog.html',
+        '_pages/blog/article.html',
+        '_pages/index.html',
+      ]);
+      done();
+    });
+  });
 });
