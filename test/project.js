@@ -272,4 +272,27 @@ describe('Project', function() {
       project._copyMiscFiles();
     }).to.throw('misc files must be read first');
   });
+
+  it('requires misc files to copy them', function(done) {
+    var project = this.project();
+    project._miscFiles = [
+      'README.md',
+      'css/styles.css'
+    ];
+    temp.mkdir('tmp', function(err, dir) {
+      expect(err).to.not.exist;
+      project._copyMiscFiles(dir, function(err) {
+        expect(err).to.not.exist;
+        fs.exists(path.join(dir, 'README.md'), function(exists) {
+          expect(exists).to.be.true;
+          fs.exists(path.join(dir, 'css/styles.css'), function(exists) {
+            temp.cleanup(function(err) {
+              expect(err).to.not.exist;
+              done();
+            });
+          });
+        });
+      });
+    });
+  });
 });
