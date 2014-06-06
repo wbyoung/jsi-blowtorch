@@ -8,8 +8,12 @@ var Project = require('../lib/project');
 var temp = require('temp').track();
 
 describe('Project', function() {
+  before(function() {
+    this.project = new Project(path.join(__dirname, 'fixtures/site-1'));
+  });
+
   it('creates file list', function(done) {
-    var project = new Project(path.join(__dirname, 'fixtures/site-1'));
+    var project = this.project;
     project._createFileList(function(err) {
       expect(err).to.not.exist;
       expect(project._files.sort()).to.eql([
@@ -25,6 +29,25 @@ describe('Project', function() {
         '_pages/index.html',
         '_site.json',
         'css/styles.css'
+      ]);
+      done();
+    });
+  });
+
+  it('fails to find layouts before creating a file list', function() {
+    var project = this.project;
+    expect(function() {
+      project._findLayouts();
+    }).to.throw;
+  });
+
+  it('finds layouts', function(done) {
+    var project = new Project(path.join(__dirname, 'fixtures/site-1'));
+    project._createFileList(function(err) {
+      project._findLayouts();
+      expect(project._layouts.sort()).to.eql([
+        '_layouts/blog.html',
+        '_layouts/default.html'
       ]);
       done();
     });
