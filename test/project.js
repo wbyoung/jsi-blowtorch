@@ -169,4 +169,17 @@ describe('Project', function() {
       done();
     });
   });
+
+  it.skip('creates individual pages', function() {
+    var project = this.project;
+    var page = {
+      name: 'article',
+      path: '_pages/blog/article.html',
+      contents: 'Article of some sort',
+      config: {}
+    };
+    project._createPage(function(err) {
+      expect(err).to.not.exist;
+    });
+  });
 });
