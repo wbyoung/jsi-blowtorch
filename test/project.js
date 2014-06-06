@@ -128,4 +128,45 @@ describe('Project', function() {
       project._eachPageAsync();
     }).to.throw(Error);
   });
+
+  it('iterates pages', function(done) {
+    var project = new Project(path.join(__dirname, 'fixtures/site-1'));
+    project._pages = [
+      '_pages/about.html',
+      '_pages/blog.html',
+      '_pages/blog/article.html',
+      '_pages/index.html'
+    ];
+    var expectations = {
+      about: {
+        length: 6, config: { "vars": { "title": "About" } }
+      },
+      blog: {
+        length: 5,
+        config: { "layout": "blog", "vars": { "title": "Home" } }
+      },
+      article: {
+        length: 21, config: { "layout": "blog", "vars":
+          { "title": "Special Article" }
+        }
+      },
+      index: {
+        length: 14,
+        config: {}
+      }
+    };
+    var count = 0;
+    project._eachPageAsync(function(page, eachDone) {
+      var expectation = expectations[page.name];
+      expect(page.config).to.eql(expectation.config);
+      expect(page.contents.length).to.eql(expectation.length);
+      expect(page.path).to.exist;
+      count += 1;
+      eachDone();
+    }, function(err) {
+      expect(err).to.not.exist;
+      expect(count).to.eql(project._pages.length);
+      done();
+    });
+  });
 });
