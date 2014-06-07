@@ -8,7 +8,7 @@ var fsExtras = require('../lib/fs-extras');
 
 describe('fs-extras', function() {
   it('can read directories recursively', function(done) {
-    var dir = path.join(__dirname, 'fixtures/site-1');
+    var dir = path.join(__dirname, 'fixtures/site-basic');
     fsExtras.readdirRecursive(dir, function(err, result) {
       expect(err).to.not.exist;
       expect(result.sort()).to.eql([
@@ -31,7 +31,7 @@ describe('fs-extras', function() {
 
   describe('filesEqual()', function() {
     it('compares files as equal', function(done) {
-      var file = path.join(__dirname, 'fixtures/site-1/README.md');
+      var file = path.join(__dirname, 'fixtures/site-basic/README.md');
       fsExtras.filesEqual(file, file, function(err, result) {
         expect(err).to.not.exist;
         expect(result).to.be.true;
@@ -40,8 +40,8 @@ describe('fs-extras', function() {
     });
 
     it('compares files as not equal', function(done) {
-      var file1 = path.join(__dirname, 'fixtures/site-1/README.md');
-      var file2 = path.join(__dirname, 'fixtures/site-1/_site.json');
+      var file1 = path.join(__dirname, 'fixtures/site-basic/README.md');
+      var file2 = path.join(__dirname, 'fixtures/site-basic/_site.json');
       fsExtras.filesEqual(file1, file2, function(err, result) {
         expect(err).to.not.exist;
         expect(result).to.be.false;
@@ -53,7 +53,7 @@ describe('fs-extras', function() {
 
   describe('directoriesEqual()', function() {
     it('compares directories as equal', function(done) {
-      var dir = path.join(__dirname, 'fixtures/site-1');
+      var dir = path.join(__dirname, 'fixtures/site-basic');
       fsExtras.directoriesEqual(dir, dir, function(err, result) {
         expect(err).to.not.exist;
         expect(result).to.be.true;
@@ -62,8 +62,8 @@ describe('fs-extras', function() {
     });
 
     it('compares directories as not equal', function(done) {
-      var dir1 = path.join(__dirname, 'fixtures/site-1');
-      var dir2 = path.join(__dirname, 'fixtures/site-1/_pages');
+      var dir1 = path.join(__dirname, 'fixtures/site-basic');
+      var dir2 = path.join(__dirname, 'fixtures/site-basic/_pages');
       fsExtras.directoriesEqual(dir1, dir2, function(err, result) {
         expect(err).to.not.exist;
         expect(result).to.be.false;

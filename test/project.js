@@ -12,7 +12,7 @@ var temp = require('temp').track();
 describe('Project', function() {
   beforeEach(function() {
     this.project = function() {
-      return new Project(path.join(__dirname, 'fixtures/site-1'));
+      return new Project(path.join(__dirname, 'fixtures/site-basic'));
     };
     this.files = [
       'README.md',
@@ -48,7 +48,7 @@ describe('Project', function() {
   });
 
   it('finds layouts', function() {
-    var project = new Project(path.join(__dirname, 'fixtures/site-1'));
+    var project = new Project(path.join(__dirname, 'fixtures/site-basic'));
     project._files = this.files;
     project._findLayouts();
     expect(project._layouts.sort()).to.eql([
@@ -65,7 +65,7 @@ describe('Project', function() {
   });
 
   it('finds pages', function() {
-    var project = new Project(path.join(__dirname, 'fixtures/site-1'));
+    var project = new Project(path.join(__dirname, 'fixtures/site-basic'));
     project._files = this.files;
     project._findPages();
     expect(project._pages.sort()).to.eql([
@@ -84,7 +84,7 @@ describe('Project', function() {
   });
 
   it('finds misc files', function() {
-    var project = new Project(path.join(__dirname, 'fixtures/site-1'));
+    var project = new Project(path.join(__dirname, 'fixtures/site-basic'));
     project._files = this.files;
     project._findMiscFiles();
     expect(project._miscFiles.sort()).to.eql([
@@ -94,7 +94,7 @@ describe('Project', function() {
   });
 
   it('reads the site config', function(done) {
-    var project = new Project(path.join(__dirname, 'fixtures/site-1'));
+    var project = new Project(path.join(__dirname, 'fixtures/site-basic'));
     project._readConfig(function(err) {
       expect(err).to.not.exist;
       expect(project._config).to.eql({
@@ -114,7 +114,7 @@ describe('Project', function() {
   });
 
   it('reads layouts', function(done) {
-    var project = new Project(path.join(__dirname, 'fixtures/site-1'));
+    var project = new Project(path.join(__dirname, 'fixtures/site-basic'));
     project._layouts = ['_layouts/blog.html', '_layouts/default.html'];
     project._readLayouts(function(err) {
       expect(err).to.not.exist;
@@ -133,7 +133,7 @@ describe('Project', function() {
   });
 
   it('iterates pages', function(done) {
-    var project = new Project(path.join(__dirname, 'fixtures/site-1'));
+    var project = new Project(path.join(__dirname, 'fixtures/site-basic'));
     project._pages = [
       '_pages/about.html',
       '_pages/blog.html',
@@ -324,7 +324,7 @@ describe('Project', function() {
 
   it('generates results', function(done) {
     var project = this.project();
-    var expectedDir = path.join(__dirname, 'expected/site-1');
+    var expectedDir = path.join(__dirname, 'expected/site-basic');
     temp.mkdir('tmp', function(err, dir) {
       expect(err).to.not.exist;
       project.generate(dir, function(err) {
