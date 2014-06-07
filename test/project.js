@@ -119,8 +119,8 @@ describe('Project', function() {
     project._readLayouts(function(err) {
       expect(err).to.not.exist;
       expect(_.size(project._layoutsCache)).to.eql(2);
-      expect(project._layoutsCache.default.length).to.eql(106);
-      expect(project._layoutsCache.blog.length).to.eql(122);
+      expect(project._layoutsCache.default.contents.length).to.eql(106);
+      expect(project._layoutsCache.blog.contents.length).to.eql(122);
       done();
     })
   });
@@ -176,7 +176,12 @@ describe('Project', function() {
   it('creates individual pages', function(done) {
     var project = this.project();
     project._config = {};
-    project._layoutsCache = { default: 'Hello {{ content }}' };
+    project._layoutsCache = {
+      default: {
+        path: '_layouts/default.html',
+        contents: 'Hello {{ content }}'
+      }
+    };
     var page = {
       name: 'article',
       path: '_pages/blog/article.html',
@@ -213,7 +218,12 @@ describe('Project', function() {
 
   it('requires project config to lay out pages', function() {
     var project = this.project();
-    project._layoutsCache = { default: 'Hello' };
+    project._layoutsCache = {
+      default: {
+        path: '_layouts/default.html',
+        contents: 'Hello'
+      }
+    };
     var page = {
       name: 'article',
       path: '_pages/blog/article.html',
@@ -227,7 +237,12 @@ describe('Project', function() {
 
   it('lays out pages', function() {
     var project = this.project();
-    project._layoutsCache = { default: 'Hello {{ content }}' };
+    project._layoutsCache = {
+      default: {
+        path: '_layouts/default.html',
+        contents: 'Hello {{ content }}'
+      }
+    };
     project._config = {};
     var page = {
       name: 'article',
@@ -241,7 +256,12 @@ describe('Project', function() {
 
   it('lays out pages with variables', function() {
     var project = this.project();
-    project._layoutsCache = { default: '{{ title }}: Hello {{ content }}' };
+    project._layoutsCache = {
+      default: {
+        path: '_layouts/default.html',
+        contents: '{{ title }}: Hello {{ content }}'
+      }
+    };
     project._config = {};
     var page = {
       name: 'article',
@@ -255,7 +275,12 @@ describe('Project', function() {
 
   it('lays out pages with other layouts', function() {
     var project = this.project();
-    project._layoutsCache = { blog: 'Blog, Hello {{ content }}' };
+    project._layoutsCache = {
+      blog: {
+        path: '_layouts/blog.html',
+        contents: 'Blog, Hello {{ content }}'
+      }
+    };
     project._config = {};
     var page = {
       name: 'article',

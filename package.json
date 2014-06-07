@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "commander": "^2.2.0",
+    "haml": "^0.4.3",
     "lodash": "^2.4.1"
   }
 }
