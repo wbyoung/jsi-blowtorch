@@ -340,4 +340,23 @@ describe('Project', function() {
       });
     });
   });
+
+  it.skip('generates results with haml', function(done) {
+    var project = new Project(path.join(__dirname, 'fixtures/site-haml'));
+    var expectedDir = path.join(__dirname, 'expected/site-haml');
+    temp.mkdir('tmp', function(err, dir) {
+      expect(err).to.not.exist;
+      project.generate(dir, function(err) {
+        expect(err).to.not.exist;
+        fsExtras.directoriesEqual(expectedDir, dir, function(err, equal) {
+          expect(err).to.not.exist;
+          expect(equal).to.be.true;
+          temp.cleanup(function(err) {
+            expect(err).to.not.exist;
+            done();
+          });
+        });
+      });
+    });
+  });
 });

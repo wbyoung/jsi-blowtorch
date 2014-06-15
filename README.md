@@ -1,6 +1,6 @@
 # Blowtorch
 
-[![NPM version][npm-image]][npm-url] [![Build status][travis-image]][travis-url] [![Code Climate][codeclimate-image]][codeclimate-url] [![Coverage Status][coverage-image]][coverage-url] [![Dependencies][david-image]][david-url]
+[![NPM version][npm-image]][npm-url] [![Build status][travis-image]][travis-url] [![Code Climate][codeclimate-image]][codeclimate-url] [![Coverage Status][coverage-image]][coverage-url] [![Dependencies][david-image]][david-url] [![devDependencies][david-dev-image]][david-dev-url]
 
 > This repository is for learning purposes. It may intentionally contain bugs or
 fail to function properly. The code may be purposefully difficult to read,
@@ -43,3 +43,5 @@ default configuration for each page.
 [coverage-url]: https://coveralls.io/r/wbyoung/jsi-blowtorch
 [david-image]: https://david-dm.org/wbyoung/jsi-blowtorch.png?theme=shields.io
 [david-url]: https://david-dm.org/wbyoung/jsi-blowtorch
+[david-dev-image]: https://david-dm.org/wbyoung/jsi-blowtorch/dev-status.png?theme=shields.io
+[david-dev-url]: https://david-dm.org/wbyoung/jsi-blowtorch#info=devDependencies
