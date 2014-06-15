@@ -2,9 +2,17 @@
   "name": "blowtorch",
   "version": "0.1.2",
   "description": "Static site generator",
+  "homepage": "https://github.com/wbyoung/jsi-blowtorch",
+  "bugs": {
+    "url": "https://github.com/wbyoung/jsi-blowtorch/issues"
+  },
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report $(if [ \"$TRAVIS\" ]; then echo lcovonly; else echo html; fi) -- && if [ \"$TRAVIS\" ]; then cat ./coverage/lcov.info | ./node_modules/.bin/coveralls; fi"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/wbyoung/jsi-blowtorch.git"
   },
   "bin": {
     "blowtorch": "./bin/blowtorch"
